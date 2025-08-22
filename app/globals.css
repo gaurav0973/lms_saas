@@ -138,6 +138,7 @@ body {
   }
 }
 
+
 @layer components {
   .home-section {
     @apply flex gap-4 justify-between items-start w-full max-lg:flex-col-reverse max-lg:items-center;
