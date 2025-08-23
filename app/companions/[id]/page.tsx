@@ -3,7 +3,7 @@ import { getSubjectColor } from "@/lib/utils"
 import { currentUser } from "@clerk/nextjs/server"
 import Image from "next/image"
 import { redirect } from "next/navigation"
-import { subjects } from '../../../constants/index';
+import CompanionComponent from "@/components/CompanionComponent"
 
 interface CompanionSessionPageProps{
   params : Promise<{id : string}>
@@ -23,6 +23,8 @@ async function CompanionSession({params} : CompanionSessionPageProps) {
 
   return (
       <main>
+
+        {/* header */}
         <article className="flex rounded-border justify-between p-6 max-md:flex-col">
           <div className="flex items-center gap-2">
                 <div className="size-[72px] flex items-center justify-center rounded-lg max-md:hidden" style={{backgroundColor : getSubjectColor(companion.subject)}}>
@@ -47,6 +49,12 @@ async function CompanionSession({params} : CompanionSessionPageProps) {
             {companion.duration} minutes
           </div>
         </article>
+        <CompanionComponent
+          {... companion}
+          companionId = {id}
+          userName = {user.firstName!}
+          userImage = {user.imageUrl!}
+        />
       </main>
   )
 }
